@@ -6,8 +6,7 @@ import com.techcourse.myblog.dto.WriterRequestDto;
 import com.techcourse.myblog.dto.WriterResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -21,6 +20,7 @@ public class WriterService {
         return new WriterResponseDto(writer);
     }
 
+    @Transactional(readOnly = true)
     public Writer findByEmail(String email) {
         return writerRepository.findByEmail(email).orElseThrow(IllegalArgumentException::new);
     }
