@@ -18,12 +18,12 @@ public class Article extends AbstractEntity {
     private String contents;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_WRITER_ARTICLE"))
-    private Writer writer;
+    @JoinColumn(name = "author_id", foreignKey = @ForeignKey(name = "FK_WRITER_ARTICLE"))
+    private Writer author;
 
     @Builder
-    public Article(Writer writer, String title, String contents) {
-        this.writer = writer;
+    public Article(Writer author, String title, String contents) {
+        this.author = author;
         this.title = title;
         this.contents = contents;
     }

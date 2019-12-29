@@ -18,7 +18,7 @@ class ArticleTest {
     @BeforeEach
     void setUp() {
         writer = Writer.builder()
-                .nickName("nickname")
+                .nickname("nickname")
                 .email("email@email.com")
                 .password("password")
                 .build();
@@ -31,7 +31,7 @@ class ArticleTest {
         assertThat(article.getContents()).isEqualTo("contents");
         assertThat(article.getTitle()).isEqualTo("title");
         assertThat(article.getId()).isNull();
-        assertThat(article.getWriter().getNickname()).isEqualTo("nickname");
+        assertThat(article.getAuthor().getNickname()).isEqualTo("nickname");
     }
 
     @Test
@@ -52,7 +52,7 @@ class ArticleTest {
         tm.persistAndFlush(article);
 
         assertThat(article.getId()).isNotNull();
-        assertThat(article.getWriter().getId()).isNotNull();
+        assertThat(article.getAuthor().getId()).isNotNull();
 
         Article persist = tm.find(Article.class, article.getId());
         assertThat(persist.getTitle()).isEqualTo(article.getTitle());
