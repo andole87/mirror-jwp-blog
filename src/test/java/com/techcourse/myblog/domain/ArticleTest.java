@@ -58,4 +58,13 @@ class ArticleTest {
         assertThat(persist.getTitle()).isEqualTo(article.getTitle());
         assertThat(persist.getContents()).isEqualTo(article.getContents());
     }
+
+    @Test
+    void timeStamp() {
+        Article article = new Article(writer, "title", "contents");
+
+        tm.persistAndFlush(article);
+
+        assertThat(article.getCreateTime()).isNotNull();
+    }
 }

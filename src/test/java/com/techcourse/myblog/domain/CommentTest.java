@@ -63,4 +63,13 @@ class CommentTest {
         assertThat(persist.getAuthor().getId()).isNotNull();
         assertThat(persist.getArticle().getId()).isNotNull();
     }
+
+    @Test
+    void timeStamp() {
+        tm.persist(article);
+        Comment comment = new Comment(writer, article, "contents");
+        tm.persistAndFlush(comment);
+
+        assertThat(comment.getCreateTime()).isNotNull();
+    }
 }
