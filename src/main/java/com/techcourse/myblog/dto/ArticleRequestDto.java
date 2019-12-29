@@ -11,11 +11,13 @@ import lombok.ToString;
 @Getter
 @ToString
 public class ArticleRequestDto {
+    private String email;
     private String title;
     private String contents;
 
     @Builder
-    public ArticleRequestDto(String title, String contents) {
+    public ArticleRequestDto(String email, String title, String contents) {
+        this.email = email;
         this.title = title;
         this.contents = contents;
     }
@@ -26,5 +28,9 @@ public class ArticleRequestDto {
                 .title(title)
                 .contents(contents)
                 .build();
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -22,9 +24,8 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
     private final CommentRepository commentRepository;
 
-    public ArticleResponseDto publish(String email, ArticleRequestDto requestDto) {
-        Writer author = writerService.findByEmail(email);
-
+    public ArticleResponseDto publish(ArticleRequestDto requestDto) {
+        Writer author = writerService.findByEmail(requestDto.getEmail());
         Article persist = articleRepository.save(requestDto.toEntity(author));
         return new ArticleResponseDto(persist);
     }
@@ -36,5 +37,32 @@ public class ArticleService {
         Comment persist = commentRepository.save(requestDto.toEntity(author, article));
 
         return new CommentResponseDto(persist);
+    }
+
+    public ArticleResponseDto findById(long articleId) {
+        Article article = articleRepository.findById(articleId).orElseThrow(IllegalArgumentException::new);
+        return new ArticleResponseDto(article);
+    }
+
+    public List<ArticleResponseDto> findAllArticles() {
+        return articleRepository.findAll().stream()
+                .map(ArticleResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public CommentResponseDto append(long articleId, CommentRequestDto requestDto) {
+        Article article = articleRepository.findById(articleId).orElseThrow(IllegalArgumentException::new);
+        Writer author = writerService.findByEmail(requestDto.getEmail());
+
+        Comment persist = commentRepository.save(requestDto.toEntity(author, article));
+
+        return new CommentResponseDto(persist);
+    }
+
+    public List<CommentResponseDto> findAllComment(long articleId) {
+        Article article = articleRepository.findById(articleId).orElseThrow(IllegalArgumentException::new);
+        return commentRepository.findByArticle(article).stream()
+                .map(CommentResponseDto::new)
+                .collect(Collectors.toList());
     }
 }

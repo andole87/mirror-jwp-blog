@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class CommentRequestDto {
+    private String email;
     private String contents;
 
     public Comment toEntity(Writer author, Article article) {
@@ -19,5 +20,9 @@ public class CommentRequestDto {
                 .article(article)
                 .contents(this.contents)
                 .build();
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
