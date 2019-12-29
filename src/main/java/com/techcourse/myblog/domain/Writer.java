@@ -4,18 +4,25 @@ import com.techcourse.myblog.common.AbstractEntity;
 import lombok.Builder;
 import lombok.Getter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Getter
 @Entity
 public class Writer extends AbstractEntity {
-    private String nickName;
+
+    @Column(name = "nickname")
+    private String nickname;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
 
     @Builder
-    public Writer(String nickName, String email, String password) {
-        this.nickName = nickName;
+    public Writer(String nickname, String email, String password) {
+        this.nickname = nickname;
         this.email = email;
         this.password = password;
     }

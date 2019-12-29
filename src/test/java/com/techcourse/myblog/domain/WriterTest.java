@@ -11,7 +11,7 @@ class WriterTest {
     @Test
     void create() {
         Writer writer = new Writer("nickname", "email@email.com", "password");
-        assertThat(writer.getNickName()).isEqualTo("nickname");
+        assertThat(writer.getNickname()).isEqualTo("nickname");
         assertThat(writer.getPassword()).isEqualTo("password");
         assertThat(writer.getEmail()).isEqualTo("email@email.com");
         assertThat(writer.getId()).isNull();

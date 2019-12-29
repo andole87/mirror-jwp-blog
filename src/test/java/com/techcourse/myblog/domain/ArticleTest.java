@@ -31,7 +31,7 @@ class ArticleTest {
         assertThat(article.getContents()).isEqualTo("contents");
         assertThat(article.getTitle()).isEqualTo("title");
         assertThat(article.getId()).isNull();
-        assertThat(article.getWriter().getNickName()).isEqualTo("nickname");
+        assertThat(article.getWriter().getNickname()).isEqualTo("nickname");
     }
 
     @Test

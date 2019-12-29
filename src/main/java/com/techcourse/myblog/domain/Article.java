@@ -9,7 +9,12 @@ import javax.persistence.*;
 @Getter
 @Entity
 public class Article extends AbstractEntity {
+
+    @Column(name = "title", length = 100)
     private String title;
+
+    @Lob
+    @Column(name = "contents")
     private String contents;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
