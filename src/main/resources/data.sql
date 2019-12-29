@@ -1,1 +1,0 @@
-insert into user(user_name,password,email) values('test','A!1bcdefg','test@test.com');
