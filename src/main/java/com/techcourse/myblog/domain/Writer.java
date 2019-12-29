@@ -26,4 +26,10 @@ public class Writer extends AbstractEntity {
         this.email = email;
         this.password = password;
     }
+
+    public void update(Writer another) {
+        this.nickname = another.nickname;
+        this.password = another.password;
+        this.email = another.email;
+    }
 }
