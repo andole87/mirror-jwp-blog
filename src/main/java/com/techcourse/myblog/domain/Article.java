@@ -1,11 +1,14 @@
 package com.techcourse.myblog.domain;
 
 import com.techcourse.myblog.common.AbstractEntity;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
 public class Article extends AbstractEntity {
