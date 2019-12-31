@@ -2,14 +2,14 @@
   <div>
     <v-row align="center" justify="center" v-for="(article, index) in articles" :key="index">
       <v-col cols="12" sm="8" md="8">
-        <a>
+        <router-link :to="{name: 'article', params:{id:article.id, article: article}}">
           <v-card>
             <v-card-text>
               <p class="display-1 text--primary" align="center">{{article.title}}</p>
               <div class="text--primary">{{ article.contents }}</div>
             </v-card-text>
           </v-card>
-        </a>
+        </router-link>
       </v-col>
     </v-row>
   </div>
@@ -25,3 +25,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+a {
+  text-decoration: none;
+}
+</style>

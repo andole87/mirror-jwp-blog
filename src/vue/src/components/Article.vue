@@ -1,12 +1,19 @@
 <template>
-  <div>{{id}}</div>
+  <div>
+    <h2>{{article.title}}</h2>
+    <p>{{article.contents}}</p>
+  </div>
 </template>
 <script>
 export default {
-  data() {
-    return {
-      id: this.$route.params.id
-    };
+  props: {
+    article: {
+      type: Object,
+      required: true
+    },
+    id: {
+      type: Number
+    }
   }
 };
 </script>

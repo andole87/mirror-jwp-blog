@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Article></Article>
+    <Article :article="article"></Article>
   </div>
 </template>
 
@@ -9,6 +9,12 @@ import Article from "@/components/Article.vue";
 export default {
   components: {
     Article
+  },
+  props: {
+    article: {
+      type: Object,
+      required: true
+    }
   }
 };
 </script>
