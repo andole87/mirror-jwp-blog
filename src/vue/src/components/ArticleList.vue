@@ -2,7 +2,7 @@
   <div>
     <v-row align="center" justify="center" v-for="(article, index) in articles" :key="index">
       <v-col cols="12" sm="8" md="8">
-        <router-link :to="{name: 'article', params:{id:article.id, article: article}}">
+        <router-link :to="{name: 'article', params:{articleId:article.id}}">
           <v-card>
             <v-card-text>
               <p class="display-1 text--primary" align="center">{{article.title}}</p>

@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Article from '@/views/Article.vue'
-
+import About from '@/views/About.vue'
 
 Vue.use(VueRouter)
 
@@ -14,8 +13,7 @@ const routes = [{
     {
         path: '/about',
         name: 'about',
-        component: () =>
-            import ( /* webpackChunkName: "about" */ '@/views/About.vue')
+        component: About
     },
     {
         path: '/login',
@@ -30,13 +28,18 @@ const routes = [{
             import ('@/views/NewArticle.vue')
     },
     {
-        path: '/articles/:id',
+        path: '/articles/:articleId',
         name: 'article',
-        component: Article,
+        component: () =>
+            import ('@/views/Article.vue'),
         props: true
-    }
-]
+    },
+    {
+        path: '*',
+        redirect: '/'
+    },
 
+]
 const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,

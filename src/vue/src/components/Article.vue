@@ -10,9 +10,6 @@ export default {
     article: {
       type: Object,
       required: true
-    },
-    id: {
-      type: Number
     }
   }
 };
