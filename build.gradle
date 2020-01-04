@@ -1,9 +1,9 @@
 plugins {
     id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'com.moowork.node' version '1.3.1'
     id 'java'
 }
-
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.techcourse'
 version = '0.0.1-SNAPSHOT'
@@ -34,3 +34,23 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+node {
+    version = '12.14.0'
+    npmVersion = '6.13.4'
+    workDir = file('./src/vue')
+    npmWorkDir = file('./src/vue')
+    nodeModulesDir = file('./src/vue')
+}
+
+task setUp(type: NpmTask) {
+    description = 'Install Node.js packages'
+    args = ['install']
+    inputs.files file('package.json')
+    outputs.files file('node_modules')
+}
+
+task buildVue(type: NpmTask, dependsOn: setUp) {
+    description = 'Build vue.js'
+    args = ['run', 'build']
+}
+processResources.dependsOn 'buildVue'

@@ -29,6 +29,7 @@ out/
 /nbdist/
 /.nb-gradle/
 
+### Node
 .DS_Store
 node_modules/
 npm-debug.log*
@@ -37,6 +38,7 @@ yarn-error.log*
 /test/unit/coverage/
 /test/e2e/reports/
 selenium-debug.log
+src/vue/npm**/
 
 # Editor directories and files
 .vscode
@@ -48,3 +50,6 @@ selenium-debug.log
 # local env files
 .env.local
 .env.*.local
+
+## webpack
+src/main/resources/static/*
